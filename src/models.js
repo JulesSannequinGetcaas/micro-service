@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import uniqueValidator from 'mongoose-unique-validator';
 
 const UserSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
@@ -22,6 +23,8 @@ const UserSchema = new mongoose.Schema({
     },
     password: { type: String, required: true }
 });
+
+UserSchema.plugin(uniqueValidator, { message: '{PATH} doit être unique.' });
 
 UserSchema.pre("save", async function (next) {
     if(!this.isModified("password"))return next();
