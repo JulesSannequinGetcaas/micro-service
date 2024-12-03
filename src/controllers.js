@@ -1,7 +1,6 @@
 import User from "./models.js";
 import jwt from "jsonwebtoken";
 
-// Enregistrer un utilisateur
 export const registerUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -20,7 +19,7 @@ export const registerUser = async (req, res) => {
     }
 };
 
-// Connexion d'un utilisateur
+
 export const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -47,15 +46,15 @@ export const loginUser = async (req, res) => {
     }
 };
 
-export const getUserProfile = async (req, res) => {
-    try {
-        const user = await User.findById(req.user.id);
-        if (!user) {
-            return res.status(404).json({ message: "User not found" });
-        }
+// export const getUserProfile = async (req, res) => {
+//     try {
+//         const user = await User.findById(req.user.id);
+//         if (!user) {
+//             return res.status(404).json({ message: "User not found" });
+//         }
 
-        res.status(200).json(user);
-    } catch (err) {
-        res.status(500).json({ message: "Server error", error: err.message });
-    }
-};
+//         res.status(200).json(user);
+//     } catch (err) {
+//         res.status(500).json({ message: "Server error", error: err.message });
+//     }
+// };
